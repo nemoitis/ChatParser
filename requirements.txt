@@ -9,6 +9,7 @@ fastapi==0.109.0
 filelock==3.13.1
 fsspec==2023.12.2
 gibberish-detector==0.1.1
+gunicorn==21.2.0
 h11==0.14.0
 httptools==0.6.1
 idna==3.6
