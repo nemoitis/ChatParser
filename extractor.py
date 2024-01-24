@@ -9,7 +9,7 @@ import re
 from gibberish_detector import detector
 
 reader = easyocr.Reader(['en'])
-gb = detector.create_from_model('./big.model')
+gd = detector.create_from_model('./big.model')
 
 
 def download(url):
@@ -21,6 +21,8 @@ def download(url):
 
 def read(img):
     og_width, og_height = img.size
+    # Crop the image 15% from top, 10% from bottom to
+    # filter out unwanted artifacts
     img = img.crop((
         0,
         int((15 * og_height)/100),
@@ -35,12 +37,15 @@ def annotate(lines, width, list = False):
     for position, line in lines:
         # Replace misplaced |
         line = line.replace("|", "I")
-        if not is_desired_text(line) or gb.is_gibberish(line):
+
+        # Check if the text matches with some known noise patterns,
+        # or, if it's some random gibberish text
+        if not is_desired_text(line) or gd.is_gibberish(line):
             continue
-        if position[0][0] > int((width * 20)/100):
-            sender = "he"
-        else:
-            sender = "she"
+
+        # Determine the sender by comparing the X position
+        # with an arbitrary threshold
+        sender = 'he' if position[0][0] > int((width * 20)/100) else 'she'
 
         if list:
             annotated_lines.append(f"{sender}: {line}")
