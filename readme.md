@@ -1,9 +1,4 @@
 ---
-title: ChatParser
-app_file: ui.py
-sdk: gradio
-sdk_version: 3.36.1
----
 ChatParser
 ---
 
