@@ -1,3 +1,4 @@
+from urllib.parse import urlparse
 import easyocr
 from PIL import Image
 import requests
@@ -12,7 +13,18 @@ reader = easyocr.Reader(['en'])
 gd = detector.create_from_model('./big.model')
 
 
+def validate_url(url):
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
+
+
 def download(url):
+    if not validate_url(url):
+        raise ValueError("Invalid URL")
+
     response = requests.get(url)
     if response.status_code != 200:
         raise ValueError("Failed to download image")
@@ -32,7 +44,7 @@ def read(img):
     return reader.readtext(np.array(img), paragraph=True, detail=1)
 
 
-def annotate(lines, width, list = False):
+def annotate(lines, width, list=False):
     annotated_lines = []
     for position, line in lines:
         # Replace misplaced |
@@ -72,7 +84,10 @@ def is_desired_text(text):
     return True
 
 
-def extract(path, list = False):
+def extract(path, list=False):
+    if not path:
+        return
+
     content = path if os.path.exists(path) else BytesIO(download(path))
     img = Image.open(content)
     lines = read(img)
