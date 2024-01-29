@@ -14,6 +14,15 @@ pip install -r requirements.txt
 
 ## Running
 
+### GUI Mode
+
+To initiate the GUI run `python ui.py` from your terminal. You'll see the private and public URL in the terminal output. Hit the URL and it will open the user interface.
+
+> [!IMPORTANT]
+> Full dependencies should be installed using `requirement.txt`
+
+<img width="760" alt="image" src="https://github.com/nemoitis/ChatParser/assets/80112748/92d1316e-0893-4d7f-8922-7f0ae81bdf5c">
+
 ### API Mode
 
 To run the app in API only mode simply execute `./run.sh` from your terminal.
@@ -27,12 +36,6 @@ __GET `/api/v1/extract`__
 | url (required)  | str  | None    | URL of an image file         |
 | list (optional) | bool | False   | Determines the output format |
 
-### GUI Mode
-
-To run as the GUI run `python ui.py` from your terminal. You'll see the private and public URL in the terminal output. Hit the URL and it will open the user interface.
-
-> [!IMPORTANT]
-> Full dependencies should be installed using `requirement.txt`
 
 ## Deployment
 
