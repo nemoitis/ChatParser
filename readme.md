@@ -21,7 +21,8 @@ To initiate the GUI run `python ui.py` from your terminal. You'll see the privat
 > [!IMPORTANT]
 > Full dependencies should be installed using `requirement.txt`
 
-<img width="760" alt="image" src="https://github.com/nemoitis/ChatParser/assets/80112748/92d1316e-0893-4d7f-8922-7f0ae81bdf5c">
+<img width="768" alt="image" src="https://github.com/nemoitis/ChatParser/assets/80112748/e32cc9bf-5006-4a12-bae6-165001d4e4dd">
+
 
 ### API Mode
 
