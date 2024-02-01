@@ -8,6 +8,7 @@ from uuid import uuid4
 import os
 import re
 from gibberish_detector import detector
+from autocorrect import make_correction
 
 reader = easyocr.Reader(['en'])
 gd = detector.create_from_model('./big.model')
@@ -54,6 +55,9 @@ def annotate(lines, width, list=False):
         # or, if it's some random gibberish text
         if not is_desired_text(line) or gd.is_gibberish(line):
             continue
+
+        # Try to rectify some spelling mistakes
+        line = make_correction(line)
 
         # Determine the sender by comparing the X position
         # with an arbitrary threshold
