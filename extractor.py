@@ -41,6 +41,8 @@ def read(img):
         og_width,
         (og_height - int((10 * og_height)/100))
     ))
+    # Convert the image to grayscale for better readability
+    img = img.convert('L')
     return reader.readtext(np.array(img), paragraph=True, detail=1)
 
 
