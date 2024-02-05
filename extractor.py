@@ -57,9 +57,39 @@ def annotate(lines, width, list=False):
         if not is_desired_text(line) or gd.is_gibberish(line):
             continue
 
-        # Determine the sender by comparing the X position
-        # with an arbitrary threshold
-        sender = 'he' if position[0][0] > int((width * 20)/100) else 'she'
+        # Calculate half, one-fourth, and three-fourth of the image's width
+        HALF_WD = int(width/2)
+        ONE_FORTH_WD = int(width/4)
+        THREE_FOURTH_WD = HALF_WD + ONE_FORTH_WD
+        # X at the top-left and top-right corner of the image
+        x_start, _ = position[0]
+        x_end, _ = position[1]
+        # Y at the top-right and bottom-right corner of the image
+        _, y_start = position[1]
+        _, y_end = position[2]
+
+        # If the starting and ending of the message box is within 50% from the
+        # half of the image, or the message box width is less than half of
+        # one fourth and the height is less that 45 (an arbitrary value)
+        # chances that it is most probably a system message, e.g. time.
+        if ((x_start > ONE_FORTH_WD) and (x_end < (THREE_FOURTH_WD))) \
+                or (((x_end - x_start) < ONE_FORTH_WD/2) and (y_end - y_start) <= 45):
+            sender = 'system'
+
+        # If starting of the message box is less than one-fourth of the width
+        # and end of the message box is within the third divider line, then
+        # it is most probably an incoming message.
+        elif (x_start < ONE_FORTH_WD) and (x_end < (THREE_FOURTH_WD + ONE_FORTH_WD/2)):
+            sender = 'she'
+
+        # If the ending of the message box is way out of the third divider line,
+        # it is most probably a outgoing message.
+        elif x_end > (THREE_FOURTH_WD + ONE_FORTH_WD/2):
+            sender = 'he'
+
+        # If none of the above conditions are satisfied, ignore the message.
+        else:
+            continue
 
         if list:
             annotated_lines.append(f"{sender}: {line}")
