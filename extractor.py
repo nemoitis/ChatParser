@@ -101,19 +101,19 @@ def annotate(lines, width, list=False):
 
 def is_desired_text(text):
     undesired_patterns = [
-        "Type a message Send",
+        "Type a message",
+        "Send a message"
         "Snapchat",
         "Ne Sent",
         "Delivered",
         "Message\n\n",
         "iMessage",
-        "Reply Sent"
-        '((1[0-2]|0?[1-9]):([0-5][0-9]))'
+        "Reply Sent",
+        "Sent",
+        "Send"
     ]
 
-    if any(re.search(pattern, text) for pattern in undesired_patterns):
-        return False
-    return True
+    return text not in undesired_patterns
 
 
 def extract(path, list=False):
