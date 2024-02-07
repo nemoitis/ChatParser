@@ -84,7 +84,7 @@ def annotate(lines, width, list=False):
 
         # If the ending of the message box is way out of the third divider line,
         # it is most probably a outgoing message.
-        elif x_end > (THREE_FOURTH_WD + ONE_FORTH_WD/2):
+        elif x_end > THREE_FOURTH_WD:
             sender = 'he'
 
         # If none of the above conditions are satisfied, ignore the message.
