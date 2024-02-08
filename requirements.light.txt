@@ -5,7 +5,7 @@ charset-normalizer==3.3.2
 click==8.1.7
 easyocr==1.7.1
 exceptiongroup==1.2.0
-fastapi==0.109.0
+fastapi==0.109.1
 filelock==3.13.1
 fsspec==2023.12.2
 gibberish-detector==0.1.1

@@ -11,7 +11,7 @@ contourpy==1.2.0
 cycler==0.12.1
 easyocr==1.7.1
 exceptiongroup==1.2.0
-fastapi==0.109.0
+fastapi==0.109.1
 ffmpy==0.3.1
 filelock==3.13.1
 fonttools==4.47.2
