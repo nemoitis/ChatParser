@@ -1,0 +1,23 @@
+[project]
+name = "chat-parser"
+version = "0.1.0"
+description = "Extract text from chat screenshots"
+requires-python = ">=3.11"
+dependencies = [
+    "easyocr>=1.7",
+    "fastapi>=0.115",
+    "gibberish-detector>=0.1",
+    "gunicorn>=23",
+    "numpy>=2.1",
+    "pillow>=11",
+    "python-dotenv>=1.1",
+    "requests>=2.32",
+    "uvicorn[standard]>=0.32",
+]
+
+[project.optional-dependencies]
+ui = ["gradio>=5.11"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
