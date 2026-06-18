@@ -212,7 +212,7 @@ python-dotenv==1.2.2
     # via
     #   chat-parser
     #   uvicorn
-python-multipart==0.0.29
+python-multipart==0.0.31
     # via gradio
 pytz==2026.2
     # via gradio
